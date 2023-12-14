@@ -1,9 +1,14 @@
+import OutputView from "./OutputView.js";
 import RacingGame from "./RacingGame.js";
 
 class App {
   async play() {
-    const racingGame = new RacingGame();
-    racingGame.start();
+    try {
+      const racingGame = new RacingGame();
+      await racingGame.start();
+    } catch (error) {
+      throw error;
+    }
   }
 }
 
