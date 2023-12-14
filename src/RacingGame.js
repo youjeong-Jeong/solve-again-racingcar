@@ -1,6 +1,7 @@
 import { Random } from "@woowacourse/mission-utils";
 import { ERROR } from "./Constants.js";
 import InputView from "./InputView.js";
+import OutputView from "./OutputView.js";
 
 class RacingGame {
   #moveResult;
@@ -13,9 +14,10 @@ class RacingGame {
     const carNames = await this.userInputCarName();
     const tryCount = await this.userInputTryCount();
     this.#moveResult = this.resetMoveResult(carNames);
+    OutputView.printResultMessage();
     this.repeatGame(carNames, tryCount);
     const winner = this.checkWinner(carNames);
-
+    OutputView.printWinner(winner);
   }
 
   checkWinner(carNames = []) {
@@ -48,6 +50,7 @@ class RacingGame {
         this.decisionToMove(idx);
       })
     }
+    OutputView.printResult(carNames, this.#moveResult);
   }
 
   decisionToMove(idx = 0) {
